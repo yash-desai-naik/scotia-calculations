@@ -6,7 +6,7 @@ Imports System.Windows.Forms ' Import necessary namespace for ProgressBar
 
 Module LATAM
 
-
+    Dim rootPath = My.Settings.DownloadPath
     Sub PopulateReportFromCalculationFile(ProgressBar1 As ProgressBar)
         Dim CalculationFile As String
         Dim ReportFile As String
@@ -24,23 +24,22 @@ Module LATAM
         Dim calcWorkbook As Excel.Workbook
         Dim reportWorkbook As Excel.Workbook
         Dim gCountry As String
-        Dim gProduct As String
-        gCountry = "Chile"
-        gProduct = "Forwards"
+        Dim currentDate As DateTime = DateTime.Now
+        Dim currentYear As String = currentDate.ToString("yyyy")
+        Dim currentMonth As String = currentDate.ToString("MMM")
         Dim AssemblyDirectory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location)
         Dim MasterReportFileName = "SupportdataforMINIMIS Report"
 
         Dim MasterReportFilePath = System.IO.Path.Combine(AssemblyDirectory, MasterReportFileName & ".xlsx")
         ' Define file paths
-        Dim WorkingDirectoryPath = "C:\Users\yash\Documents\nisha\Was resume\Latam De Minimis Calculation"
-        Dim currentDate As DateTime = DateTime.Now
-        Dim formattedDate As String = "Jan 1, 2023 to Dec 31, 2023"
-        Dim ReportFileName = MasterReportFileName & formattedDate & ".xlsx" ' Use same workbook for ReportFile
+        Dim WorkingDirectoryPath = System.IO.Path.Combine(rootPath, $"{currentYear}\{currentMonth}\Latam De Minimis Calculation")
+        Dim formattedDate As String = $"January 1, {currentYear} to December 31, {currentYear}"
+        Dim ReportFileName = MasterReportFileName & " " & formattedDate & ".xlsx" ' Use same workbook for ReportFile
         Dim ReportFilePath = System.IO.Path.Combine(WorkingDirectoryPath, ReportFileName)
 
         File.Copy(MasterReportFilePath, ReportFilePath, True)
         'Dim ReportFilePath = System.IO.Path.Combine(AssemblyFile, ReportFileName)
-        Dim CalculationFileName = "CFTC Deminimis LatAm Extracts\MINIMIS Calculation Template (Chile) January 1, 2023 to December 31, 2023.xlsx"
+        Dim CalculationFileName = $"CFTC Deminimis LatAm Extracts\MINIMIS Calculation Template (Chile) {formattedDate}.xlsx"
         Dim CalculationFilePath = System.IO.Path.Combine(WorkingDirectoryPath, CalculationFileName)
 
         Dim excelApp As New Excel.Application()
