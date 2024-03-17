@@ -33,46 +33,48 @@ Partial Class Form1
         '
         'ComboBox1
         '
+        Me.ComboBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ComboBox1.FormattingEnabled = True
         Me.ComboBox1.Items.AddRange(New Object() {"LATAM", "K2", "OPICS"})
         Me.ComboBox1.Location = New System.Drawing.Point(74, 75)
         Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(182, 28)
+        Me.ComboBox1.Size = New System.Drawing.Size(233, 37)
         Me.ComboBox1.TabIndex = 0
         '
         'btnCalculate
         '
-        Me.btnCalculate.Location = New System.Drawing.Point(74, 133)
+        Me.btnCalculate.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnCalculate.Location = New System.Drawing.Point(326, 75)
         Me.btnCalculate.Name = "btnCalculate"
-        Me.btnCalculate.Size = New System.Drawing.Size(88, 37)
+        Me.btnCalculate.Size = New System.Drawing.Size(152, 37)
         Me.btnCalculate.TabIndex = 1
         Me.btnCalculate.Text = "Calculate"
         Me.btnCalculate.UseVisualStyleBackColor = True
         '
         'ProgressBar1
         '
-        Me.ProgressBar1.Location = New System.Drawing.Point(74, 189)
+        Me.ProgressBar1.Location = New System.Drawing.Point(74, 135)
         Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(442, 23)
+        Me.ProgressBar1.Size = New System.Drawing.Size(404, 34)
         Me.ProgressBar1.TabIndex = 2
         '
         'btnSelectDownloadPath
         '
         Me.btnSelectDownloadPath.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSelectDownloadPath.Location = New System.Drawing.Point(74, 242)
+        Me.btnSelectDownloadPath.Location = New System.Drawing.Point(74, 188)
         Me.btnSelectDownloadPath.Name = "btnSelectDownloadPath"
-        Me.btnSelectDownloadPath.Size = New System.Drawing.Size(394, 48)
+        Me.btnSelectDownloadPath.Size = New System.Drawing.Size(404, 48)
         Me.btnSelectDownloadPath.TabIndex = 3
-        Me.btnSelectDownloadPath.Text = "Select Dowload Location"
+        Me.btnSelectDownloadPath.Text = "Select Calulation Location"
         Me.btnSelectDownloadPath.UseVisualStyleBackColor = True
         '
         'StatusStrip1
         '
         Me.StatusStrip1.ImageScalingSize = New System.Drawing.Size(24, 24)
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 418)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 329)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(800, 32)
+        Me.StatusStrip1.Size = New System.Drawing.Size(565, 32)
         Me.StatusStrip1.TabIndex = 4
         Me.StatusStrip1.Text = "StatusStrip1"
         '
@@ -86,7 +88,7 @@ Partial Class Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(565, 361)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.btnSelectDownloadPath)
         Me.Controls.Add(Me.ProgressBar1)

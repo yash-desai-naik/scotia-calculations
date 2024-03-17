@@ -77,53 +77,24 @@ Module LATAM
         ProgressBar1.Value = 0
         ProgressBar1.Step = 1
 
-        ' Loop through FWD sheet data
-        For i = 4 To lastRowFwd
-            gCountry = fwdSheet.Cells(i, "M").Value
-            counterparty = fwdSheet.Cells(i, "H").Value
-            notional = fwdSheet.Cells(i, "J").Value
-            foundMatch = False
-
-            ' Check if country and product already exist in report
-            For j = i - 2 To lastRowReport
-                foundMatch = True
-
-                reportSheet.Cells(j, "C").Value = counterparty
-                reportSheet.Cells(j, "D").Value = notional
-                Exit For
-            Next j
-
-            ' If not found, add new row
-            If Not foundMatch Then
-                lastRowReport = lastRowReport + 1
-                reportSheet.Cells(lastRowReport, "A").Value = gCountry
-                reportSheet.Cells(lastRowReport, "B").Value = "Forwards"
-                reportSheet.Cells(lastRowReport, "C").Value = counterparty
-                reportSheet.Cells(lastRowReport, "D").Value = notional
-            End If
-            ' Update progress bar
-            ProgressBar1.PerformStep()
-            Application.DoEvents() ' Allow the UI to update
-        Next i
-
         ' Loop through SWAP sheet data
         For i = 4 To lastRowSwap
             counterparty = swapSheet.Cells(i, "M").Value
             notional = swapSheet.Cells(i, "O").Value
             foundMatch = False
 
-            ' Check if country and product already exist in report
-            For j = 2 To lastRowReport
-                If reportSheet.Cells(j, "A").Value = swapSheet.Cells(i, "A").Value And reportSheet.Cells(j, "B").Value = "Swaps" Then
-                    foundMatch = True
-                    reportSheet.Cells(j, "A").Value = gCountry
-                    reportSheet.Cells(j, "B").Value = "Swaps"
-                    reportSheet.Cells(j, "C").Value = counterparty
-                    reportSheet.Cells(j, "D").Value = notional
-                    Exit For
-                End If
+            '' Check if country and product already exist in report
+            'For j = 2 To lastRowReport
+            '    If reportSheet.Cells(j, "A").Value = swapSheet.Cells(i, "A").Value And reportSheet.Cells(j, "B").Value = "Swaps" Then
+            '        foundMatch = True
+            '        reportSheet.Cells(j, "A").Value = "in"
+            '        reportSheet.Cells(j, "B").Value = "Swaps"
+            '        reportSheet.Cells(j, "C").Value = counterparty
+            '        reportSheet.Cells(j, "D").Value = notional
+            '        Exit For
+            '    End If
 
-            Next j
+            'Next j
 
             ' If not found, add new row
             If Not foundMatch Then
@@ -138,6 +109,39 @@ Module LATAM
             ProgressBar1.PerformStep()
             Application.DoEvents() ' Allow the UI to update
         Next i
+
+        ' Loop through FWD sheet data
+        For i = 4 To lastRowFwd
+            gCountry = fwdSheet.Cells(i, "M").Value
+            counterparty = fwdSheet.Cells(i, "H").Value
+            notional = fwdSheet.Cells(i, "J").Value
+            foundMatch = False
+
+            '' Check if country and product already exist in report
+            'For j = i - 2 To lastRowReport
+            '    foundMatch = True
+
+            '    reportSheet.Cells(j, "C").Value = counterparty
+            '    reportSheet.Cells(j, "D").Value = notional
+            '    Exit For
+            'Next j
+
+            ' If not found, add new row
+            If Not foundMatch Then
+                lastRowReport = lastRowReport + 1
+                reportSheet.Cells(lastRowReport, "A").Value = gCountry
+                reportSheet.Cells(lastRowReport, "B").Value = "Forwards"
+                reportSheet.Cells(lastRowReport, "C").Value = counterparty
+                reportSheet.Cells(lastRowReport, "D").Value = notional
+            End If
+            ' Update progress bar
+            ProgressBar1.PerformStep()
+            Application.DoEvents() ' Allow the UI to update
+        Next i
+
+
+
+
 
         ' Close calculation file
         calcWorkbook.Close(SaveChanges:=False)
