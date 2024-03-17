@@ -26,13 +26,13 @@ Module LATAM
         Dim gCountry As String
         Dim currentDate As DateTime = DateTime.Now
         Dim currentYear As String = currentDate.ToString("yyyy")
-        Dim currentMonth As String = currentDate.ToString("MMM")
+        Dim prevMonth As String = currentDate.AddMonths(-1).ToString("MMM")
         Dim AssemblyDirectory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location)
         Dim MasterReportFileName = "SupportdataforMINIMIS Report"
 
         Dim MasterReportFilePath = System.IO.Path.Combine(AssemblyDirectory, MasterReportFileName & ".xlsx")
         ' Define file paths
-        Dim WorkingDirectoryPath = System.IO.Path.Combine(rootPath, $"{currentYear}\{currentMonth}\Latam De Minimis Calculation")
+        Dim WorkingDirectoryPath = System.IO.Path.Combine(rootPath, $"{currentYear}\{prevMonth}\Latam De Minimis Calculation")
         Dim formattedDate As String = $"January 1, {currentYear} to December 31, {currentYear}"
         Dim ReportFileName = MasterReportFileName & " " & formattedDate & ".xlsx" ' Use same workbook for ReportFile
         Dim ReportFilePath = System.IO.Path.Combine(WorkingDirectoryPath, ReportFileName)
