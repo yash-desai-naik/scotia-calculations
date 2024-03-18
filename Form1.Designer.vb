@@ -25,7 +25,6 @@ Partial Class Form1
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.btnCalculate = New System.Windows.Forms.Button()
         Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
-        Me.btnSelectDownloadPath = New System.Windows.Forms.Button()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.StatusStrip1.SuspendLayout()
@@ -58,16 +57,6 @@ Partial Class Form1
         Me.ProgressBar1.Size = New System.Drawing.Size(404, 34)
         Me.ProgressBar1.TabIndex = 2
         '
-        'btnSelectDownloadPath
-        '
-        Me.btnSelectDownloadPath.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSelectDownloadPath.Location = New System.Drawing.Point(74, 188)
-        Me.btnSelectDownloadPath.Name = "btnSelectDownloadPath"
-        Me.btnSelectDownloadPath.Size = New System.Drawing.Size(404, 48)
-        Me.btnSelectDownloadPath.TabIndex = 3
-        Me.btnSelectDownloadPath.Text = "Select Calulation Location"
-        Me.btnSelectDownloadPath.UseVisualStyleBackColor = True
-        '
         'StatusStrip1
         '
         Me.StatusStrip1.ImageScalingSize = New System.Drawing.Size(24, 24)
@@ -90,7 +79,6 @@ Partial Class Form1
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(565, 361)
         Me.Controls.Add(Me.StatusStrip1)
-        Me.Controls.Add(Me.btnSelectDownloadPath)
         Me.Controls.Add(Me.ProgressBar1)
         Me.Controls.Add(Me.btnCalculate)
         Me.Controls.Add(Me.ComboBox1)
@@ -106,7 +94,6 @@ Partial Class Form1
     Friend WithEvents ComboBox1 As ComboBox
     Friend WithEvents btnCalculate As Button
     Friend WithEvents ProgressBar1 As ProgressBar
-    Friend WithEvents btnSelectDownloadPath As Button
     Friend WithEvents StatusStrip1 As StatusStrip
     Friend WithEvents ToolStripStatusLabel1 As ToolStripStatusLabel
 End Class

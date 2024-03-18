@@ -11,12 +11,11 @@ Public Class Form1
         ' Add any initialization after the InitializeComponent() call.
 
         ' Update UI with settings
-        ' Retrieve download path and interval from settings
-        downloadPath = My.Settings.DownloadPath
+
 
         ' Update UI with settings
-        ToolStripStatusLabel1.Text = downloadPath
-        ToolStripStatusLabel1.Text = downloadPath
+        Dim documentPath As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
+        ToolStripStatusLabel1.Text = Path.Combine(documentPath, "scotia-automation")
 
 
 
@@ -36,22 +35,6 @@ Public Class Form1
         ComboBox1.SelectedIndex = 0
     End Sub
 
-    Private Sub ProgressBar1_Click(sender As Object, e As EventArgs) Handles ProgressBar1.Click
-
-    End Sub
-
-    Private Sub btnSelectDownloadPath_Click(sender As Object, e As EventArgs) Handles btnSelectDownloadPath.Click
-        ' Open folder browser dialog to select download location
-        Dim folderBrowserDialog As New FolderBrowserDialog()
-        If folderBrowserDialog.ShowDialog() = DialogResult.OK Then
-            downloadPath = folderBrowserDialog.SelectedPath
-            ToolStripStatusLabel1.Text = downloadPath
-
-            ' Save download path to settings
-            My.Settings.DownloadPath = downloadPath
-            My.Settings.Save()
-        End If
-    End Sub
 
 
 End Class

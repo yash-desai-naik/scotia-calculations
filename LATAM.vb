@@ -5,8 +5,10 @@ Imports System.Windows.Forms ' Import necessary namespace for ProgressBar
 
 
 Module LATAM
+    Dim documentPath As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
 
-    Dim rootPath = My.Settings.DownloadPath
+    Dim rootPath = Path.Combine(documentPath, "scotia-automation")
+
     Sub PopulateReportFromCalculationFile(ProgressBar1 As ProgressBar)
         Dim CalculationFile As String
         Dim ReportFile As String
@@ -28,9 +30,11 @@ Module LATAM
         Dim currentYear As String = currentDate.ToString("yyyy")
         Dim prevMonth As String = currentDate.AddMonths(-1).ToString("MMM")
         Dim AssemblyDirectory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location)
+        MsgBox("AssemblyDirectory" & AssemblyDirectory)
         Dim MasterReportFileName = "SupportdataforMINIMIS Report"
 
         Dim MasterReportFilePath = System.IO.Path.Combine(AssemblyDirectory, MasterReportFileName & ".xlsx")
+        MsgBox("MasterReportFilePath" & MasterReportFilePath)
         ' Define file paths
         Dim WorkingDirectoryPath = System.IO.Path.Combine(rootPath, $"{currentYear}\{prevMonth}\Latam De Minimis Calculation")
         Dim formattedDate As String = $"January 1, {currentYear} to December 31, {currentYear}"
