@@ -42,7 +42,7 @@ Module LATAM
         Dim formattedDate As String = $"January 1, {currentYear} to December 31, {currentYear}"
         Dim ReportFileName = MasterReportFileName & " " & formattedDate & ".xlsx" ' Use same workbook for ReportFile
         Dim ReportFilePath = System.IO.Path.Combine(WorkingDirectoryPath, ReportFileName)
-        EnsureCreation(ReportFilePath, method:="file")
+        'EnsureCreation(ReportFilePath, method:="file")
 
         Try
 
@@ -187,28 +187,30 @@ Module LATAM
 
 
         If method = "dir" Then
-    Try
-      Dim directoryInfo As New DirectoryInfo(path)
-      directoryInfo.Create() ' Create directory with intermediate directories if needed
-      Return True
-    Catch ex As Exception
-      Console.WriteLine($"Error creating directory: {path} ({ex.Message})")
-      Return False
-    End Try
-  ElseIf method = "file" Then
-    Try
-      Dim fileStream As New FileStream(path, FileMode.Create)
-      fileStream.Close() ' Create an empty file
-      Return True
-    Catch ex As Exception
-      Console.WriteLine($"Error creating file: {path} ({ex.Message})")
-      Return False
-    End Try
-  Else
-    Console.WriteLine($"Invalid method: {method}. Supported methods are 'dir' and 'file'.")
-    Return False
-  End If
-End Function
+            Try
+                If Not Directory.Exists(path) Then
+                    Dim directoryInfo As New DirectoryInfo(path)
+                    directoryInfo.Create() ' Create directory with intermediate directories if needed
+                End If
+                Return True
+            Catch ex As Exception
+                Console.WriteLine($"Error creating directory: {path} ({ex.Message})")
+                Return False
+            End Try
+        ElseIf method = "file" Then
+            Try
+                Dim fileStream As New FileStream(path, FileMode.Create)
+                fileStream.Close() ' Create an empty file
+                Return True
+            Catch ex As Exception
+                Console.WriteLine($"Error creating file: {path} ({ex.Message})")
+                Return False
+            End Try
+        Else
+            Console.WriteLine($"Invalid method: {method}. Supported methods are 'dir' and 'file'.")
+            Return False
+        End If
+    End Function
 
 
 
