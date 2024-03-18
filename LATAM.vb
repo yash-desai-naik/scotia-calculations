@@ -10,6 +10,8 @@ Module LATAM
     Dim rootPath = Path.Combine(documentPath, "scotia-automation")
 
     Sub PopulateReportFromCalculationFile(ProgressBar1 As ProgressBar)
+        EnsureCreation(rootPath)
+
         Dim CalculationFile As String
         Dim ReportFile As String
         Dim fwdSheet As Excel.Worksheet
@@ -30,18 +32,24 @@ Module LATAM
         Dim currentYear As String = currentDate.ToString("yyyy")
         Dim prevMonth As String = currentDate.AddMonths(-1).ToString("MMM")
         Dim AssemblyDirectory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location)
-        MsgBox("AssemblyDirectory" & AssemblyDirectory)
+
         Dim MasterReportFileName = "SupportdataforMINIMIS Report"
 
         Dim MasterReportFilePath = System.IO.Path.Combine(AssemblyDirectory, MasterReportFileName & ".xlsx")
-        MsgBox("MasterReportFilePath" & MasterReportFilePath)
         ' Define file paths
         Dim WorkingDirectoryPath = System.IO.Path.Combine(rootPath, $"{currentYear}\{prevMonth}\Latam De Minimis Calculation")
+        EnsureCreation(WorkingDirectoryPath)
         Dim formattedDate As String = $"January 1, {currentYear} to December 31, {currentYear}"
         Dim ReportFileName = MasterReportFileName & " " & formattedDate & ".xlsx" ' Use same workbook for ReportFile
         Dim ReportFilePath = System.IO.Path.Combine(WorkingDirectoryPath, ReportFileName)
+        EnsureCreation(ReportFilePath, method:="file")
 
-        File.Copy(MasterReportFilePath, ReportFilePath, True)
+        Try
+
+            File.Copy(MasterReportFilePath, ReportFilePath, True)
+        Catch ex As Exception
+            MsgBox("Sorry, Couldn't prepare files" & ex.Message)
+        End Try
         'Dim ReportFilePath = System.IO.Path.Combine(AssemblyFile, ReportFileName)
         Dim CalculationFileName = $"CFTC Deminimis LatAm Extracts\MINIMIS Calculation Template (Chile) {formattedDate}.xlsx"
         Dim CalculationFilePath = System.IO.Path.Combine(WorkingDirectoryPath, CalculationFileName)
@@ -173,4 +181,35 @@ Module LATAM
             obj = Nothing
         End Try
     End Sub
+
+
+    Public Function EnsureCreation(path As String, Optional ByVal method As String = "dir") As Boolean
+
+
+        If method = "dir" Then
+    Try
+      Dim directoryInfo As New DirectoryInfo(path)
+      directoryInfo.Create() ' Create directory with intermediate directories if needed
+      Return True
+    Catch ex As Exception
+      Console.WriteLine($"Error creating directory: {path} ({ex.Message})")
+      Return False
+    End Try
+  ElseIf method = "file" Then
+    Try
+      Dim fileStream As New FileStream(path, FileMode.Create)
+      fileStream.Close() ' Create an empty file
+      Return True
+    Catch ex As Exception
+      Console.WriteLine($"Error creating file: {path} ({ex.Message})")
+      Return False
+    End Try
+  Else
+    Console.WriteLine($"Invalid method: {method}. Supported methods are 'dir' and 'file'.")
+    Return False
+  End If
+End Function
+
+
+
 End Module
