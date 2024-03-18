@@ -191,8 +191,8 @@ Module LATAM
                 If Not Directory.Exists(path) Then
                     Dim directoryInfo As New DirectoryInfo(path)
                     directoryInfo.Create() ' Create directory with intermediate directories if needed
+                    Return True
                 End If
-                Return True
             Catch ex As Exception
                 Console.WriteLine($"Error creating directory: {path} ({ex.Message})")
                 Return False
