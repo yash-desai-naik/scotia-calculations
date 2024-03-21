@@ -25,14 +25,15 @@ Public Class Form1
             Case "LATAM"
                 LATAM.PopulateReportFromCalculationFile(Me.ProgressBar1)
             Case "K2"
-                MsgBox("k2")
+                'K2.CFCTE(Me.ProgressBar1)
+                K2.CCDExtractCSV(Me.ProgressBar1)
 
 
         End Select
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ComboBox1.SelectedIndex = 0
+        ComboBox1.SelectedIndex = 1
     End Sub
 
 
