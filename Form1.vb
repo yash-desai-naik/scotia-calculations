@@ -25,8 +25,9 @@ Public Class Form1
             Case "LATAM"
                 LATAM.PopulateReportFromCalculationFile(Me.ProgressBar1)
             Case "K2"
-                'K2.CFCTE(Me.ProgressBar1)
+                K2.CFCTE(Me.ProgressBar1)
                 K2.CCDExtractCSV(Me.ProgressBar1)
+                MsgBox("DONE")
 
 
         End Select
