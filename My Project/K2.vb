@@ -30,6 +30,32 @@ Module K2
             MsgBox("Sorry, Couldn't prepare files" & ex.Message)
         End Try
 
+        Dim CalculationFileName = $"CFTC Deminimis LatAm Extracts\MINIMIS Calculation Template (Chile) {formattedDate}.xlsx"
+        Dim CalculationFilePath = ""
+        Dim csvFD As New OpenFileDialog()
+        Dim WBFD As New OpenFileDialog()
+
+        ' Set the title and filter for the dialog
+        csvFD.Title = "Select a csv file"
+        csvFD.Filter = "CSV files (*.csv)|*.csv"
+
+        WBFD.Title = "Select a xlsx file"
+        WBFD.Filter = "Excel files (*.xlsx)|*.xlsx"
+
+        ' Show the dialog and check if the user clicked OK
+        If csvFD.ShowDialog() = DialogResult.OK Then
+            ' Get the selected file path
+            csvFilePath = csvFD.FileName
+            MessageBox.Show("You selected: " & csvFilePath)
+        End If
+
+        If WBFD.ShowDialog() = DialogResult.OK Then
+            ' Get the selected file path
+            wbNamePath = WBFD.FileName
+            MessageBox.Show("You selected: " & wbNamePath)
+        End If
+
+
         Dim xlApp As New Excel.Application
         Dim wb As Excel.Workbook = Nothing
         Dim wsK2 As Excel.Worksheet = Nothing

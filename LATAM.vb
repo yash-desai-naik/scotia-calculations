@@ -52,7 +52,20 @@ Module LATAM
         End Try
         'Dim ReportFilePath = System.IO.Path.Combine(AssemblyFile, ReportFileName)
         Dim CalculationFileName = $"CFTC Deminimis LatAm Extracts\MINIMIS Calculation Template (Chile) {formattedDate}.xlsx"
-        Dim CalculationFilePath = System.IO.Path.Combine(WorkingDirectoryPath, CalculationFileName)
+        Dim CalculationFilePath = ""
+        Dim openFileDialog1 As New OpenFileDialog()
+
+        ' Set the title and filter for the dialog
+        openFileDialog1.Title = "Select a file"
+        openFileDialog1.Filter = "CSV files (*.csv)|*.csv|Excel files (*.xlsx)|*.xlsx"
+
+        ' Show the dialog and check if the user clicked OK
+        If openFileDialog1.ShowDialog() = DialogResult.OK Then
+            ' Get the selected file path
+            CalculationFilePath = openFileDialog1.FileName
+            MessageBox.Show("You selected: " & CalculationFilePath)
+        End If
+
 
         Dim excelApp As New Excel.Application()
         excelApp.Visible = False ' You can set this to True to see Excel operations happening.

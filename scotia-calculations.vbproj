@@ -67,10 +67,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>DFE9259F38E3A524509FA87BBF5D3EA49EF45502</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>BEE94B32998F408F1CC5AD50410BDDA956C7FAD4</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>scotia-calculations_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>scotia-calculations_1_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -157,6 +157,7 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+    <None Include="scotia-calculations_1_TemporaryKey.pfx" />
     <None Include="scotia-calculations_TemporaryKey.pfx" />
     <Content Include="SupportdataforMINIMIS Report.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
